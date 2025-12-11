@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<PackageReference Include="FluentResults" />
+		<PackageReference Include="Scrutor" />
+		<PackageReference Include="WolverineFx" />
+		<PackageReference Include="WolverineFx.EntityFrameworkCore" />
+		<PackageReference Include="WolverineFx.Http" />
+	</ItemGroup>
+</Project>

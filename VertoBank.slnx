@@ -1,0 +1,27 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/Vertobank.Modules.Tests/" />
+  <Folder Name="/Vertobank.Modules.Tests/Module.Tests/">
+    <Project Path="VertoBank.Modules.Tests/Module.Tests/Module.Application/Module.Application.csproj" />
+    <Project Path="VertoBank.Modules.Tests/Module.Tests/Module.Domain/Module.Domain.csproj" />
+    <Project Path="VertoBank.Modules.Tests/Module.Tests/Module.Infrastructure/Module.Infrastructure.csproj" />
+    <Project Path="VertoBank.Modules.Tests/Module.Tests/Module.Presentation/Module.Presentation.csproj" />
+  </Folder>
+  <Folder Name="/VertoBank.Modules/">
+    <File Path="VertoBank.Modules/Directory.Packages.props" />
+    <Project Path="VertoBank.Modules/SharedKernel/SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/VertoBank.Modules/Module/">
+    <Project Path="VertoBank.Modules/Module/Module.Application/Module.Application.csproj" Id="e6d4dd06-ee86-4ba2-b596-9ffe62145be6" />
+    <Project Path="VertoBank.Modules/Module/Module.Domain/Module.Domain.csproj" Id="75c26440-2893-4520-b248-f4ac2ff471a3" />
+    <Project Path="VertoBank.Modules/Module/Module.Infrastructure/Module.Infrastructure.csproj" Id="e5ae3875-bb19-4e6c-987e-b94204791439" />
+    <Project Path="VertoBank.Modules/Module/Module.Presentation/Module.Presentation.csproj" Id="2dd048d7-33d1-42fb-aa4f-3544ca64f003" />
+    <Project Path="VertoBank.Modules/Module/Module/Module.csproj" />
+  </Folder>
+  <Project Path="VertoBank.AppHost/VertoBank.AppHost.csproj" />
+  <Project Path="VertoBank.ServiceDefaults/VertoBank.ServiceDefaults.csproj" />
+  <Project Path="VertoBank/VertoBank.csproj" />
+</Solution>
