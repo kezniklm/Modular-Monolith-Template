@@ -100,7 +100,16 @@ public static class DependencyInjection
     {
         app.UseSwagger();
 
-        app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/module/swagger.json", "Module v1"));
+        app.UseSwaggerUI(options =>
+        {
+            foreach (SwaggerModule module in SwaggerModules)
+            {
+                options.SwaggerEndpoint(
+                    $"/swagger/{module.Key}/swagger.json",
+                    $"{module.Title} {module.Version}"
+                );
+            }
+        });
     }
 
     private sealed record SwaggerModule(string Key, string Title, string Version);
