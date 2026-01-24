@@ -1,0 +1,49 @@
+name: CD
+
+# Template repository - workflows disabled by default
+# To enable automatic deployment after CI, uncomment the lines below:
+# on:
+#   workflow_run:
+#     workflows: ["CI"]
+#     types: [completed]
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    # Uncomment this condition when enabling workflow_run trigger:
+    # if: >
+    #   github.event.workflow_run.conclusion == 'success' &&
+    #   github.event.workflow_run.head_branch == 'master' &&
+    #   github.event.workflow_run.event == 'push'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: vertobank-publish
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./publish
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_24CEA225156741C28025536C74812B7E }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_32F42B1116034A85B6AD7AF3AD34A533 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4AC61CA2D0294256A02770E37728B757 }}
+
+      - name: Deploy
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: VertoBank
+          slot-name: Production
+          package: ./publish
