@@ -49,6 +49,7 @@ Each module is self-contained with its own:
 
 ### Prerequisites
 - .NET 10.0 SDK
+- Docker (must be running to use Postgres in Aspire)
 - Your preferred IDE (Visual Studio, VS Code, Rider)
 
 ### Quick Start
