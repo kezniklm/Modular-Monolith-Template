@@ -2,10 +2,14 @@ using Projects;
 
 IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
-var postgres = builder.AddPostgres("VertoBankPostgres").WithDataVolume();
+IResourceBuilder<PostgresServerResource> postgres = builder.AddPostgres(nameof(VertoBank) + "Postgres")
+    .WithDataVolume()
+    .WithPgAdmin();
 
-var moduleDb = postgres.AddDatabase("ModuleDb");
+IResourceBuilder<PostgresDatabaseResource> moduleDb = postgres.AddDatabase("ModuleDb");
 
-builder.AddProject<VertoBank>(nameof(VertoBank)).WithReference(moduleDb, "ModuleConnectionString");
+builder.AddProject<VertoBank>(nameof(VertoBank))
+    .WithReference(moduleDb, "ModuleConnectionString")
+    .WaitFor(postgres);
 
 builder.Build().Run();
