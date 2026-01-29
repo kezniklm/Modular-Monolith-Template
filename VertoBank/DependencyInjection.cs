@@ -89,7 +89,7 @@ public static class DependencyInjection
 
     public static IHostApplicationBuilder AddWolverineMessaging(this IHostApplicationBuilder hostApplicationBuilder)
     {
-        hostApplicationBuilder.UseWolverine(null);
+        hostApplicationBuilder.UseWolverine(options => options.UseFluentValidation());
 
         hostApplicationBuilder.Services.AddWolverineHttp();
 
