@@ -2,7 +2,7 @@
 using Module;
 using SharedKernel;
 using Wolverine;
-using Wolverine.EntityFrameworkCore;
+using Wolverine.FluentValidation;
 using Wolverine.Http;
 
 namespace VertoBank;
@@ -89,7 +89,7 @@ public static class DependencyInjection
 
     public static IHostApplicationBuilder AddWolverineMessaging(this IHostApplicationBuilder hostApplicationBuilder)
     {
-        hostApplicationBuilder.UseWolverine(options => options.UseEntityFrameworkCoreTransactions());
+        hostApplicationBuilder.UseWolverine(null);
 
         hostApplicationBuilder.Services.AddWolverineHttp();
 

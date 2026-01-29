@@ -11,7 +11,6 @@
     <Project Path="VertoBank.Modules.Tests/Module.Tests/Module.Presentation/Module.Presentation.csproj" />
   </Folder>
   <Folder Name="/VertoBank.Modules/">
-    <File Path="VertoBank.Modules/Directory.Packages.props" />
     <Project Path="VertoBank.Modules/SharedKernel/SharedKernel.csproj" />
   </Folder>
   <Folder Name="/VertoBank.Modules/Module/">
