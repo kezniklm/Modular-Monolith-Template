@@ -11,7 +11,7 @@
     <Project Path="VertoBank.Modules.Tests/Module.Tests/Module.Presentation/Module.Presentation.csproj" />
   </Folder>
   <Folder Name="/VertoBank.Modules/">
-    <Project Path="../ECommercePlatform/ECommercePlatform.Modules/SharedKernel.Generators/SharedKernel.Generators.csproj" />
+    <Project Path="VertoBank.Modules/SharedKernel.Generators/SharedKernel.Generators.csproj" />
     <Project Path="VertoBank.Modules/SharedKernel/SharedKernel.csproj" />
   </Folder>
   <Folder Name="/VertoBank.Modules/Module/">
