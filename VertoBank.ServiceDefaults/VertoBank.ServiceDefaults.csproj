@@ -15,6 +15,7 @@
 		<PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" />
 		<PackageReference Include="OpenTelemetry.Instrumentation.Http" />
 		<PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+		<PackageReference Include="WolverineFx.FluentValidation" />
 	</ItemGroup>
 
 </Project>

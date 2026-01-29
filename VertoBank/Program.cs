@@ -14,6 +14,8 @@ builder.AddWolverineMessaging();
 
 WebApplication app = builder.Build();
 
+app.UseExceptionHandler();
+
 app.MapDefaultEndpoints();
 
 app.UseHttpsRedirection();

@@ -1,4 +1,7 @@
+using System.Text.Json;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +22,52 @@ public static class Extensions
 
     extension(WebApplication app)
     {
+        public WebApplication UseExceptionHandler()
+        {
+            if (!app.Environment.IsProduction())
+            {
+                return app;
+            }
+
+            app.UseExceptionHandler(applicationBuilder => applicationBuilder.Run(async context =>
+            {
+                var exception = context.Features.Get<IExceptionHandlerPathFeature>()?.Error;
+
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+                context.Response.ContentType = "application/json";
+
+                if (exception is ValidationException validationException)
+                {
+                    context.Response.StatusCode = StatusCodes.Status400BadRequest;
+
+                    var errors = validationException.Errors
+                        .GroupBy(error => error.PropertyName ?? string.Empty)
+                        .ToDictionary(
+                            group => group.Key,
+                            group => group.Select(error => error.ErrorMessage).ToArray());
+
+                    var validationPayload = JsonSerializer.Serialize(new
+                    {
+                        error = "Validation failed.",
+                        details = errors
+                    });
+
+                    await context.Response.WriteAsync(validationPayload);
+                    return;
+                }
+
+                var genericPayload = JsonSerializer.Serialize(new
+                {
+                    error = "An unexpected error occurred."
+                });
+
+                await context.Response.WriteAsync(genericPayload);
+            }));
+
+            return app;
+        }
+
         public WebApplication MapDefaultEndpoints()
         {
             if (!app.Environment.IsDevelopment())
