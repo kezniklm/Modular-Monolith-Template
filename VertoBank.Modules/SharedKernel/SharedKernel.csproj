@@ -6,4 +6,10 @@
 		<PackageReference Include="WolverineFx.FluentValidation" />
 		<PackageReference Include="WolverineFx.Http" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SharedKernel.Generators\SharedKernel.Generators.csproj"
+		                  OutputItemType="Analyzer"
+		                  ReferenceOutputAssembly="false" />
+	</ItemGroup>
 </Project>
